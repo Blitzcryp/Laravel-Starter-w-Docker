@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile : docker/dev/nginx.dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - mysql
+      - php
+      - assets
+  mysql:
+    image: mariadb:10.5
+    ports:
+      - "33061:3306"
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - ./mysql:/var/lib/mysql
+  php:
+    build:
+      context: .
+      dockerfile: docker/dev/php.dockerfile
+    volumes:
+      - ./src:/var/www/html
+  composer:
+      build:
+        context: .
+        dockerfile: docker/dev/composer.dockerfile
+      volumes:
+        - ./src:/var/www/html
+      working_dir: /var/www/html
+  assets:
+    image: node:current-alpine
+    volumes:
+      - ./src:/var/www/html
+    command: ["/bin/bash", "-c", "npm install && npm run production"]
+    working_dir: /var/www/html
