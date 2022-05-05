@@ -3,6 +3,6 @@
 
 # How to run
 1. docker-compose build composer
-2. docker-compose run --rm composer create-project laravel/laravel .
+2. docker-compose run --rm --user laravel composer create-project laravel/laravel .
 3. Define your .env Laravel file with your settings
 4. docker-compose run nginx
