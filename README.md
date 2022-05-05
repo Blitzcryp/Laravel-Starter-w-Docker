@@ -15,3 +15,6 @@
 1. docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build nginx
 2. docker-compose run --rm npm run production
 3. Check OPCACHE => docker-compose run --rm php -i | grep opcache
+
+# How to run tests in app with PHPUnit
+1. docker-compose run --rm artisan test
