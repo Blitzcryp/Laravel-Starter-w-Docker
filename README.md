@@ -18,3 +18,10 @@
 
 # How to run tests in app with PHPUnit
 1. docker-compose run --rm artisan test
+ 
+In testing add: 
+```
+        <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="DB_DATABASE" value=":memory:"/>
+```
+To your phpunit.xml file so you don't pollute your local DB
