@@ -4,5 +4,12 @@
 # How to run
 1. docker-compose build composer
 2. docker-compose run --rm --user laravel composer create-project laravel/laravel .
-3. Define your .env Laravel file with your settings
-4. docker-compose run nginx
+3. docker-compose run --rm npm install
+4. docker-compose run --rm artisan migrate:fresh
+5. Define your .env Laravel file with your settings
+6. docker-compose run nginx
+
+# Build for production
+1. docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build nginx
+2. docker-compose run --rm npm run production
+3. Check OPCACHE => docker-compose run --rm php -i | grep opcache
