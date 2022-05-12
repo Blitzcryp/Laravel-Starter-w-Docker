@@ -5,6 +5,7 @@
 
 # How to run
 1. docker-compose build composer
+  1.1. docker-compose run --rm composer install (if 2 not run)
 2. docker-compose run --rm --user laravel composer create-project laravel/laravel .
 3. docker-compose run --rm npm install
 4. docker-compose run --rm artisan migrate:fresh
